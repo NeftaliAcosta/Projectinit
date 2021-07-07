@@ -16,7 +16,7 @@
 	 * Requiere las librerias de composer
 	 */
 	require __DIR__.'/../vendor/autoload.php';
-	//Use App\Controllers\route;
-	//$init = new route();
-	//$init->start();
+	Use App\Controllers\route;
+	$init = new route();
+	$init->start();
 	

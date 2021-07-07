@@ -35,7 +35,6 @@
 			$last = end($path); // get the value of the last element
 		
 			$this->ext = pathinfo($last,PATHINFO_EXTENSION);
-			$this->meta = new meta($last, $url, $path);
 			$this->last=$last;
 
 	    }
