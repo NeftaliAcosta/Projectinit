@@ -11,7 +11,7 @@ class models extends conexion{
 
 	public static function container(){
 		return (object)[
-			'demo' => new \App\Models\demoModel,
+			'usuarios' => new \App\Models\usuarios,
 		];
 	}
 }

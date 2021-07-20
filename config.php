@@ -11,13 +11,15 @@ if(_prod_===true){
 	define('DB_PASS','');
 	define('DB_HOST','');
 	define('__PATH__', 'https://'.$_SERVER['SERVER_NAME'].'/');
+	define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
+
 
 }else{
-	define('DB_USER','');
-	define('DB_NAME','');
+	define('DB_USER','root');
+	define('DB_NAME','crud');
 	define('DB_PASS','');
-	define('DB_HOST','');
-	define('__PATH__', 'http://'.$_SERVER['SERVER_NAME'].'/'); 
+	define('DB_HOST','localhost');
+	define('__PATH__', 'http://'.$_SERVER['SERVER_NAME'].'/crud/'); 
 		// Motrar todos los errores de PHP
 	error_reporting(-1);
 		// No mostrar los errores de PHP
@@ -26,4 +28,6 @@ if(_prod_===true){
 	error_reporting(E_ALL);
 		// Motrar todos los errores de PHP
 	ini_set('error_reporting', E_ALL); 
+	define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
+
 }
