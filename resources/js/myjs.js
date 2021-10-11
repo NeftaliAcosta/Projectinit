@@ -17,10 +17,10 @@ $('#formCrearUsuario').submit(function(e) {
 	formularioSerializado.push({name: 'accion', value:"crearUsuario"});
 
 	//tiene la misma funcion que var_dump
-	//console.log(formularioSerializado);
+	console.log(formularioSerializado);
 
 	$.ajax({
-		url: 'http://localhost/crud/ajax.php',
+		url: 'http://projectinit.local/ajax.php',
 		type: 'POST',
 		data: formularioSerializado,
 		beforeSend: function(){
@@ -30,15 +30,16 @@ $('#formCrearUsuario').submit(function(e) {
 		},
 		success: function(response){
 			//alert('Ya se envio el dato');
-			console.log(response);
+			//console.log(response);
 
 		},
 		complete: function(){
 			$('.loader').hide();
 			$('.alerta').show();
 
-			alert('Usuario registrado.');
-
+			//alert('Usuario registrado.');
+			
+			//console.log(location);
 			location.reload();
 	
 		}

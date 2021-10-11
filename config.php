@@ -19,7 +19,7 @@ if(_prod_===true){
 	define('DB_NAME','crud');
 	define('DB_PASS','');
 	define('DB_HOST','localhost');
-	define('__PATH__', 'http://'.$_SERVER['SERVER_NAME'].'/crud/'); 
+	define('__PATH__', 'http://'.$_SERVER['SERVER_NAME'].'/'); 
 		// Motrar todos los errores de PHP
 	error_reporting(-1);
 		// No mostrar los errores de PHP

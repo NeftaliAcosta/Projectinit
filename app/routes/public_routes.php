@@ -17,5 +17,5 @@ $this->route->get('/eliminar', function() {
 });
 
 $this->route->error(function() {
- 	echo "Ocurrió un problema con la ruta. Al parecer no exise.";
+ 	echo "Ocurrió un problema con la ruta. Al parecer no existe.";
 });
