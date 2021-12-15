@@ -9,7 +9,7 @@
 	require_once "config.php";
 
 	/**
-	 * Requiere los controladores y librerias de JCP
+	 * Requiere los controladores y librerias del sistema
 	 */
 	require __DIR__.'/../app/app_autoloader.php';
 	/**

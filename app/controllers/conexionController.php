@@ -14,17 +14,13 @@ class conexion{
 	public $bdname;
 	public $bdpw;
 	public $bdhost;
-	public $mod;
-	public $msj;
 	public $logger;
 
 	public function __construct(){
-		$this->dbus = tools::my_decrypt(base64_decode());
-		$this->bdname = tools::my_decrypt(base64_decode(DB_NAME));
-		$this->bdpw= tools::my_decrypt(base64_decode(DB_PASS));
-		$this->bdhost = tools::my_decrypt(base64_decode(DB_HOST));
-		$this->mod = MOD_MANTENIMIENTO;
-		$this->msj = MSJ_MANTENIMIENTO;
+		$this->dbus = DB_USER;;
+		$this->bdname = DB_NAME;
+		$this->bdpw= DB_PASS;
+		$this->bdhost = DB_HOST;
 
 		$this->logger = new Logger('myapp');
 		$this->logger->pushHandler(new StreamHandler(ROOT_PATH.'/my_app.log',Logger::DEBUG));
@@ -48,10 +44,10 @@ class conexion{
 		sleep(60);
 	}
 
-
 	public function catchError($sql, $e){
 		$this->logger->warning("SQL->'".$sql."' ".$e);
 		die("Ups, ocurrió un problema con el servidor de base de datos que ya hemos notificado.");
+		//Ejecutar código para enviar por correo electrónico una notifiación en cada error del sistema.
 	}
 
 
