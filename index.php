@@ -1,10 +1,10 @@
 <?php
     function sanitizeOutput($buffer) {
 	    $search = array(
-	        '/\>[^\S ]+/s',     // Quitamos espacios en blanco después de las etiquetas, excepto los espacios en sí
-	        '/[^\S ]+\</s',     // Quitamos espacios en blanco antes de las etiquetas, excepto los espacios en sí
-	        '/(\s)+/s',         // Acortamos los espacios en blanco
-	        '/<!--(.|\s)*?-->/' // Quitamos los comentarios HTML
+	        '/\>[^\S ]+/s',
+	        '/[^\S ]+\</s',
+	        '/(\s)+/s',
+	        '/<!--(.|\s)*?-->/'
 	    );
 	    $replace = array(
 	        '>',
@@ -18,5 +18,5 @@
     ob_start("sanitizeOutput");
     //ob_start();
     ob_get_contents();
-    include "include/sistema.php";
+    include "public/index.php";
     ob_end_flush();

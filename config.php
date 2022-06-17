@@ -20,14 +20,11 @@ if(_prod_===true){
 	define('DB_PASS','');
 	define('DB_HOST','localhost');
 	define('__PATH__', 'http://'.$_SERVER['SERVER_NAME'].'/'); 
-		// Motrar todos los errores de PHP
-	error_reporting(-1);
-		// No mostrar los errores de PHP
-	error_reporting(0);
-		// Motrar todos los errores de PHP
-	error_reporting(E_ALL);
-		// Motrar todos los errores de PHP
-	ini_set('error_reporting', E_ALL); 
 	define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
 
+	// Show errors
+	error_reporting(-1);
+	error_reporting(0);
+	error_reporting(E_ALL);
+	ini_set('error_reporting', E_ALL); 
 }
