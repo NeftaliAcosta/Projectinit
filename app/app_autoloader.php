@@ -4,8 +4,8 @@
 
 	//Se define los folders a incluir de manera autómática
 	$folders = [
+		'core',
 		'controllers',
-		'models',
 		'middlewares',
 		'libs'
 	];
