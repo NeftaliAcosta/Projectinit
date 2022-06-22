@@ -9,14 +9,14 @@
 	require_once "config.php";
 
 	/**
-	 * Requiere los controladores y librerias del sistema
+	 * Load app controllers
 	 */
 	require __DIR__.'/../app/app_autoloader.php';
 	/**
-	 * Requiere las librerias de composer
+	 * Load composer
 	 */
 	require __DIR__.'/../vendor/autoload.php';
-	Use App\Controllers\route;
+	Use App\Core\route;
 	$init = new route();
 	$init->start();
 	
