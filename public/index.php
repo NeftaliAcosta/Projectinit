@@ -16,7 +16,7 @@
 	 * Load composer
 	 */
 	require __DIR__.'/../vendor/autoload.php';
-	Use App\Controllers\route;
+	Use App\Core\route;
 	$init = new route();
 	$init->start();
 	
