@@ -2,10 +2,9 @@
 
 namespace App\Core;
 
-use App\Controllers\Conexion;
+use App\Core\Conexion;
 use App\Controllers\Container;
 use App\Core\SystemException;
-use App\Core\JobtifySession;
 
 /**
  * Sql 
@@ -162,11 +161,11 @@ class Sql
     public function __construct(string $data = 'crm')
     {
         if ($data != "crm" && $data !== "jobtify") {
-            throw new JobtifyException('Selecciona "crm" o "jobtify" para hacer alguna consulta a la base de datos.');
+            throw new SystemException('Selecciona "crm" o "jobtify" para hacer alguna consulta a la base de datos.');
         }
 
         if ($data == 'jobtify') {
-            $o_jobtify_session = new JobtifySession();
+            $o_jobtify_session = new SystemException();
             $sesion_country = $o_jobtify_session->get('country');
             $db_connect = 'jobtify_master_'.$sesion_country;
         } else{
@@ -236,11 +235,11 @@ class Sql
             
             try {
                 if(!isset($valor['tipo'])){
-                    throw new JobtifyException('El parámetro TIPO de la consulta no se ha especificado.');
+                    throw new SystemException('El parámetro TIPO de la consulta no se ha especificado.');
                 }
 
                 if(!isset($valor['valor'])){
-                    throw new JobtifyException('El parámetro VALOR de la consulta no se ha especificado.');
+                    throw new SystemException('El parámetro VALOR de la consulta no se ha especificado.');
                 }
 
                 $this->camposInsertar .= "{$clave},";
@@ -251,7 +250,7 @@ class Sql
                     $this->valoresInsertar .= "'{$valor['valor']}',";
                 }
 
-            } catch (JobtifyException $e) {
+            } catch (SystemException $e) {
                 echo $e->errorMessage();
             }
 
@@ -334,11 +333,11 @@ class Sql
 
             try {
                 if(!isset($valor['tipo'])){
-                    throw new JobtifyException('El parámetro TIPO de la condición no se ha especificado.');
+                    throw new SystemException('El parámetro TIPO de la condición no se ha especificado.');
                 }
 
                 if(!isset($valor['valor'])){
-                    throw new JobtifyException('El parámetro VALOR de la condición no se ha especificado.');
+                    throw new SystemException('El parámetro VALOR de la condición no se ha especificado.');
                 }
 
                 if($valor['tipo']=="numeric"){
@@ -363,7 +362,7 @@ class Sql
                     break;
                 }
 
-            } catch (JobtifyException $e) {
+            } catch (SystemException $e) {
                 echo $e->errorMessage();
             }
 
@@ -456,10 +455,10 @@ class Sql
                     break;
                 
                 default:
-                    throw new JobtifyException('No se ha especificado el tipo de consulta a realizar.');
+                    throw new SystemException('No se ha especificado el tipo de consulta a realizar.');
                     break;
             }
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
         return $this;
@@ -476,8 +475,8 @@ class Sql
        $this->prepare();
 
         try {
-           throw new JobtifyException("{$this->consulta}");
-        } catch (JobtifyException $e) {
+           throw new SystemException("{$this->consulta}");
+        } catch (SystemException $e) {
             echo $e->errorMessage(true);
         } 
     }
@@ -511,9 +510,9 @@ class Sql
                 }
 
             }else{
-                throw new JobtifyException("No se ha especificado el método prepare() de la consulta {$this->tipo}");
+                throw new SystemException("No se ha especificado el método prepare() de la consulta {$this->tipo}");
             }
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
         return $respuesta;
@@ -546,10 +545,10 @@ class Sql
                 }
 
             }else{
-                throw new JobtifyException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
+                throw new SystemException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
             }
 
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
     }
@@ -575,18 +574,18 @@ class Sql
                         $this->consulta = "UPDATE {$this->tabla} SET {$this->parametrosActualizados} WHERE {$this->condicion};";
     
                     }else{
-                        throw new JobtifyException("No se ha especificado una o más CONDICIONES en el método where() de la consulta {$this->tipo}");
+                        throw new SystemException("No se ha especificado una o más CONDICIONES en el método where() de la consulta {$this->tipo}");
                     }
 
                 }else{
-                    throw new JobtifyException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
+                    throw new SystemException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
                 }
 
             }else{
-                throw new JobtifyException("No se ha especificado los campos a actualizar el método updatrInt() | updateString de la consulta {$this->tipo}");
+                throw new SystemException("No se ha especificado los campos a actualizar el método updatrInt() | updateString de la consulta {$this->tipo}");
             }
 
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
     }
@@ -607,14 +606,14 @@ class Sql
                     $this->consulta = "DELETE FROM {$this->tabla} WHERE {$this->condicion};";
 
                 }else{
-                    throw new JobtifyException("No se ha especificado una o más CONDICIONES en el método where() de la consulta {$this->tipo}");
+                    throw new SystemException("No se ha especificado una o más CONDICIONES en el método where() de la consulta {$this->tipo}");
                 }
 
             }else{
-                throw new JobtifyException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
+                throw new SystemException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
             }
             
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
     }
@@ -634,14 +633,14 @@ class Sql
                     $this->consulta = "INSERT INTO {$this->tabla} {$this->camposInsertar} VALUES {$this->valoresInsertar};";
     
                 }else{
-                    throw new JobtifyException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
+                    throw new SystemException("No se ha especificado la TABLA en el método from() de la consulta {$this->tipo}");
                 }
 
             }else{
-                throw new JobtifyException("No se han especificado los valores a insertsr en el método insert() de la consulta {$this->tipo}");
+                throw new SystemException("No se han especificado los valores a insertsr en el método insert() de la consulta {$this->tipo}");
             }
             
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
     }
@@ -653,10 +652,10 @@ class Sql
             if($this->custom !== ""){
                 $this->consulta = $this->custom;
             }else{
-                throw new JobtifyException("No se ha especificado ninguna consulta en el tipo: {$this->tipo}");
+                throw new SystemException("No se ha especificado ninguna consulta en el tipo: {$this->tipo}");
             }
             
-        } catch (JobtifyException $e) {
+        } catch (SystemException $e) {
             echo $e->errorMessage();
         }
     }

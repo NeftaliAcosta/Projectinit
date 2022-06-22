@@ -8,9 +8,10 @@ use Exception;
  *
  * Clase que se utiliza para validar parámetros de entrada
  *
- * @author Neftalí Acosta <neftaliacosta@jobtify.email>
- * @copyright (c) 2021, JOBTIFY MEXICO SAS
- * @link https://jobtify.mx
+ * @author Neftalí Acosta <neftaliacosta@outlook.com>
+ * @copyright (c) 2021, NEFTALI ACOSTA
+ * @link https://gubynetwork.com
+ * @version 1.0
  */
 
 class SystemException extends Exception{
