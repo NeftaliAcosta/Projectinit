@@ -158,23 +158,15 @@ class Sql
     private int $limit_value = 0;
     
 
-    public function __construct(string $data = 'crm')
+    public function __construct(string $database = 'crm')
     {
-        if ($data != "crm" && $data !== "jobtify") {
-            throw new SystemException('Selecciona "crm" o "jobtify" para hacer alguna consulta a la base de datos.');
-        }
-
-        if ($data == 'jobtify') {
-            $o_jobtify_session = new SystemException();
-            $sesion_country = $o_jobtify_session->get('country');
-            $db_connect = 'jobtify_master_'.$sesion_country;
-        } else{
-            $db_connect = 'crm_jobtify';
+        if ($database = "") {
+            throw new SystemException('Selecciona una base de datos.');
         }
 
         $pdo_temp = new Conexion(
             'root',
-            $db_connect,
+            $database,
             '',
             'localhost'
         );
